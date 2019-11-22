@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
-    public float Speed = 10f;
+    public float Speed = 15f;
     public float maxSpeed = 100f;
 
     // TODO not have this hard coded and get the bounds of the camera
