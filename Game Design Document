@@ -5,21 +5,12 @@ Game Design
 Summary
   You play as a child going sledding on a snowday, racing down a neighborhood hill and throwing snowballs at other children.
 Gameplay
-    What should the gameplay be like? What is the goal of the game, and what kind of obstacles are in the way? What tactics should the player use to overcome them?
+    The player slides down a hill, moving left and right with the d key and a key. A timer counts down as the player sleds down the hill.
+    The player can gain time by taking out other children and loses time when they crash into obstacles. The player has unlimited ammo,
+    but has to spend time to reload by pressing the space bar. There are several powerups that the player can collect.
 Mindset
-    What kind of mindset do you want to provoke in the player? Do you want them to feel powerful, or weak? Adventurous, or nervous? Hurried, or calm? How do you intend to provoke those emotions?
-
-
-Technical
-Screens
-Title Screen
-Options
-Level Select
-Game
-Inventory
-Assessment / Next Level
-End Credits
-(example)
+    A fun quick game that is somewhat challenging and gives the feeling of being a child on a snow day.
+    
 Controls
     How will the player interact with the game? Will they be able to choose the controls? What kind of in-game events are they going to be able to trigger, and how? (e.g. pressing buttons, opening doors, etc.)
 Mechanics
