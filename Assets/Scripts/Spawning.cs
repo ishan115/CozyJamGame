@@ -13,10 +13,13 @@ public class Spawning : MonoBehaviour
     [SerializeField]
     private GameObject powerUpThree;
 
+    private float maxTimeBetweenHazardSpawns = 2;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine("HazardSpawnTimer");
+        StartCoroutine("HoldPowerUpSpawnUntilOffScreen");
     }
 
     // Update is called once per frame
@@ -56,6 +59,26 @@ public class Spawning : MonoBehaviour
             Instantiate(powerUpThree, spawnPoint, Quaternion.identity);
         }
         
+    }
+
+    private IEnumerator HazardSpawnTimer()
+    {
+        yield return new WaitForSeconds(Random.Range(0, maxTimeBetweenHazardSpawns));
+        SpawnHazard();
+        StartCoroutine(HazardSpawnTimer());
+    }
+
+    private IEnumerator PowerUpSpawnTimer()
+    {
+        yield return new WaitForSeconds(Random.Range(0, 2));
+        SpawnPowerUp();
+        StartCoroutine(HoldPowerUpSpawnUntilOffScreen());
+    }
+
+    private IEnumerator HoldPowerUpSpawnUntilOffScreen()
+    {
+        yield return new WaitForSeconds(5);
+        StartCoroutine(PowerUpSpawnTimer());
     }
 
 }
