@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public float Speed = 15f;
     public float maxSpeed = 100f;
 
+    private Animator playerAnim;
+
+
     // TODO not have this hard coded and get the bounds of the camera
     float cameraMax = 9.3f;
     Vector3 cameraPos;
@@ -17,6 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         // IDk why this is here might remove
         rb = GetComponent<Rigidbody2D>();
+
+        playerAnim = GetComponent<Animator>();
     }
 
     void Update()
@@ -49,5 +54,27 @@ public class PlayerController : MonoBehaviour
         transform.position = Camera.main.ViewportToWorldPoint(cameraPos);
 
         Debug.Log("Velocity: " + rb.velocity.x);
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            playerAnim.SetBool("A_Down", true);
+            Debug.Log("A");
+        }
+        else
+        {
+            playerAnim.SetBool("A_Down", false);
+            Debug.Log("not A");
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            playerAnim.SetBool("D_Down", true);
+            Debug.Log("D");
+        }
+        else
+        {
+            playerAnim.SetBool("D_Down", false);
+            Debug.Log("not D");
+        }
     }
 }
