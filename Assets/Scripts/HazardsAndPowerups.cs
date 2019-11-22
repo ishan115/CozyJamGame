@@ -4,27 +4,10 @@ using UnityEngine;
 
 public class HazardsAndPowerups : MonoBehaviour
 {
-    [SerializeField]
-    private float translateUpAmount = 0.125f;
-
-    private float slowDownLength = 5f;
-   
-
-    void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        Vector3 moveUp = new Vector3(0, translateUpAmount);
+        Vector3 moveUp = new Vector3(0, 0.25f);
         this.transform.Translate(moveUp);
-    }
-
-    public void SlowDown()
-    {
-        translateUpAmount = translateUpAmount / 2;
-        StartCoroutine("SlowTimer");
-    }
-
-    private IEnumerator SlowTimer()
-    {
-        yield return new WaitForSeconds(slowDownLength);
-        translateUpAmount = translateUpAmount * 2;
     }
 }
