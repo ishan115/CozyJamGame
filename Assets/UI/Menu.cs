@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject creditsMenu;
+    [SerializeField]
+    private GameObject mainMenu;
+    [SerializeField]
+    private GameObject creditsMenu;
+    [SerializeField]
+    private AudioSource menuAudioSource;
+    [SerializeField]
+    private AudioClip buttonSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,5 +40,10 @@ public class Menu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void HoverSound()
+    {
+        menuAudioSource.PlayOneShot(buttonSound);
     }
 }
