@@ -78,6 +78,7 @@ public class PlayerCollision : MonoBehaviour
             collisionAudio.PlayOneShot(shieldSound);
             Debug.Log("Hit Shotgun Powerup");
             // TODO Shotgun Powerup
+            shootingScript.ActivateShotgun();
             collisionAudio.PlayOneShot(frenzyAudioClip, 1.0f);
         }
         if (collision.gameObject.tag == "PowerupFrenzy")
