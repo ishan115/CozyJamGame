@@ -17,12 +17,12 @@ public class Shooting : MonoBehaviour
     
 
     public float BulletForce = 20f;
-    public int ClipSize = 50;
+    public int ClipSize = 5;
     
     void Update()
     {
         Debug.Log($"ClipSize = {ClipSize}");
-        if (ClipSize > 0) 
+        if (ClipSize > 0 && isReloading==false) 
         {
             if (hasFrenzy == true)
             {
@@ -33,8 +33,6 @@ public class Shooting : MonoBehaviour
                     if (ClipSize == 0)
                         hasFrenzy = false;
                 }
-                
-
             }
             else
             {
@@ -110,6 +108,7 @@ public class Shooting : MonoBehaviour
     }
     IEnumerator FrenzyTimer()
     {
+        ClipSize = 500;
         yield return new WaitForSecondsRealtime(5);
         ClipSize = 0;
         hasFrenzy = false;

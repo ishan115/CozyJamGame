@@ -13,6 +13,10 @@ public class Spawning : MonoBehaviour
     [SerializeField]
     private GameObject powerUpThree;
     [SerializeField]
+    private GameObject powerUpFrenzy;
+    [SerializeField]
+    private GameObject powerUpInv;
+    [SerializeField]
     private float timeToSlowObjects;
 
     private bool instantiatedObjectsBeingSlowed=false;
@@ -29,6 +33,7 @@ public class Spawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         //Used to test spawning
         if (Input.GetButtonDown("Fire1"))
         {
@@ -38,6 +43,7 @@ public class Spawning : MonoBehaviour
         {
             SpawnPowerUp();
         }
+        */
     }
 
 
@@ -55,7 +61,7 @@ public class Spawning : MonoBehaviour
     public void SpawnPowerUp()
     {
         Vector3 spawnPoint = new Vector3(Random.Range(-8, 8), -4);
-        int randomPowerUp = Random.Range(1, 4);
+        int randomPowerUp = Random.Range(1, 6);
         if (randomPowerUp == 1)
         {
             GameObject newPowerUp = Instantiate(powerUpOne, spawnPoint, Quaternion.identity);
@@ -78,6 +84,24 @@ public class Spawning : MonoBehaviour
         {
             GameObject newPowerUp = Instantiate(powerUpThree, spawnPoint, Quaternion.identity);
             instantiatedObjects.Add(newPowerUp);
+            if (instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
+        }
+        else if (randomPowerUp == 4)
+        {
+            GameObject newPowerup = Instantiate(powerUpFrenzy, spawnPoint, Quaternion.identity);
+            instantiatedObjects.Add(newPowerup);
+            if(instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
+        }
+        else if (randomPowerUp == 5)
+        {
+            GameObject newPowerup = Instantiate(powerUpInv, spawnPoint, Quaternion.identity);
+            instantiatedObjects.Add(newPowerup);
             if (instantiatedObjectsBeingSlowed == true)
             {
                 SlowAllInstantiatedObjects();
