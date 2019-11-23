@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -39,12 +40,16 @@ public class Timer : MonoBehaviour
         int timeRounded = Mathf.RoundToInt(timeRemaining);
         string timeText = timeRounded.ToString();
         timerUI.text = timeText;
+        if(timeRemaining<=0)
+        {
+            SceneManager.LoadScene("UI_Test");
+        }
     }
 
     //May wish to make these have parameters that change based on which object is hit
     public void AddTime()
     {
-        timeRemaining += 5;
+        timeRemaining += 1;
     }
 
     public void SubtractTime()

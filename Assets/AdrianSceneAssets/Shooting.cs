@@ -108,6 +108,7 @@ public class Shooting : MonoBehaviour
     }
     IEnumerator FrenzyTimer()
     {
+        hasFrenzy = true;
         ClipSize = 500;
         yield return new WaitForSecondsRealtime(5);
         ClipSize = 0;
@@ -115,6 +116,18 @@ public class Shooting : MonoBehaviour
 
     }
 
+    
 
+    public void ActivateShotgun()
+    {
+        StartCoroutine("ShotgunTimer");
+    }
+
+    IEnumerator ShotgunTimer()
+    {
+        hasShotgun = true;
+        yield return new WaitForSecondsRealtime(5);
+        hasShotgun = false;
+    }
 
 }

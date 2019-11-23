@@ -55,23 +55,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             playerAnim.SetBool("A_Down", true);
-            Debug.Log("A");
+            
         }
         else
         {
             playerAnim.SetBool("A_Down", false);
-            Debug.Log("not A");
+           
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             playerAnim.SetBool("D_Down", true);
-            Debug.Log("D");
+            
         }
         else
         {
             playerAnim.SetBool("D_Down", false);
-            Debug.Log("not D");
+            
         }
         
     }

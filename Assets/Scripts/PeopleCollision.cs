@@ -18,8 +18,13 @@ public class PeopleCollision : MonoBehaviour
         {
             Debug.Log("Hit person");
             timer.AddTime();
-            this.kidSpriteRenderer.sprite = deadKid;
-            Destroy(this);
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = deadKid;
+        }
+        if(collision.gameObject.tag == "Player")
+        {
+            timer.SubtractTime();
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = deadKid;
         }
     }
 }
