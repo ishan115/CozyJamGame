@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public Timer timer;
+    [SerializeField]
+    private Timer timer;
+    [SerializeField]
+    private Spawning spawningObject;
 
     bool Shield = false;
     bool Invincible = false;
@@ -51,6 +54,8 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log("Hit TimeSlow Powerup");
             // TODO Time Slow Powerup
+            timer.SlowTimer();
+            spawningObject.SlowAllInstantiatedObjects();
         }
 
         IEnumerator ExecuteAfterTime(float time)

@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         cameraPos.x = Mathf.Clamp(cameraPos.x, 0.02f, .98f);
         transform.position = Camera.main.ViewportToWorldPoint(cameraPos);
 
-
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             playerAnim.SetBool("A_Down", true);
@@ -73,5 +73,6 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("D_Down", false);
             Debug.Log("not D");
         }
+        */
     }
 }
