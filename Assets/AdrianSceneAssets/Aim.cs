@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Aim : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    [SerializeField]
+    Transform playerTransform;
+
     public Camera cam;
     Vector2 mousePosition;
+
+    float angle;
     void Update()
     {
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -14,8 +18,10 @@ public class Aim : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 lookDirection = mousePosition - rb.position;
+        Vector2 lookDirection = (mousePosition - (Vector2) transform.position).normalized;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        transform.RotateAround(playerTransform.up, angle);
+        transform.up = lookDirection;
+
     }
 }
