@@ -8,23 +8,32 @@ public class HazardsAndPowerups : MonoBehaviour
     private float translateUpAmount = 0.125f;
 
     private float slowDownLength = 5f;
-
+    private bool isSlowed = false;
+    
 
     void FixedUpdate()
     {
-        Vector3 moveUp = new Vector3(0, translateUpAmount);
-        this.transform.Translate(moveUp);
+        if(isSlowed==true)
+        {
+            Vector3 moveUp = new Vector3(0, translateUpAmount/2);
+            this.transform.Translate(moveUp);
+        }
+        else
+        {
+            Vector3 moveUp = new Vector3(0, translateUpAmount);
+            this.transform.Translate(moveUp);
+        }
     }
 
     public void SlowDown()
     {
-        translateUpAmount = translateUpAmount / 2;
+        isSlowed = true;
         StartCoroutine("SlowTimer");
     }
 
     private IEnumerator SlowTimer()
     {
         yield return new WaitForSeconds(slowDownLength);
-        translateUpAmount = translateUpAmount * 2;
+        isSlowed = false;
     }
 }

@@ -12,8 +12,12 @@ public class Spawning : MonoBehaviour
     private GameObject powerUpTwo;
     [SerializeField]
     private GameObject powerUpThree;
+    [SerializeField]
+    private float timeToSlowObjects;
 
+    private bool instantiatedObjectsBeingSlowed=false;
     private float maxTimeBetweenHazardSpawns = 2;
+    private List<GameObject> instantiatedObjects = new List<GameObject>(); //List that contains all hazards and powerups that are instantiated
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +29,7 @@ public class Spawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Used to test spawning
         if (Input.GetButtonDown("Fire1"))
         {
             SpawnHazard();
@@ -39,7 +44,12 @@ public class Spawning : MonoBehaviour
     public void SpawnHazard()
     {
         Vector3 spawnPoint = new Vector3(Random.Range(-8, 8), -4);
-        Instantiate(hazardPrefab, spawnPoint, Quaternion.identity);
+        GameObject newHazard = Instantiate(hazardPrefab, spawnPoint, Quaternion.identity);
+        instantiatedObjects.Add(newHazard);
+        if(instantiatedObjectsBeingSlowed == true)
+        {
+            SlowAllInstantiatedObjects();
+        }
     }
 
     public void SpawnPowerUp()
@@ -48,17 +58,50 @@ public class Spawning : MonoBehaviour
         int randomPowerUp = Random.Range(1, 4);
         if (randomPowerUp == 1)
         {
-            Instantiate(powerUpOne, spawnPoint, Quaternion.identity);
+            GameObject newPowerUp = Instantiate(powerUpOne, spawnPoint, Quaternion.identity);
+            instantiatedObjects.Add(newPowerUp);
+            if (instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
         }
         else if (randomPowerUp == 2)
         {
-            Instantiate(powerUpTwo, spawnPoint, Quaternion.identity);
+            GameObject newPowerUp = Instantiate(powerUpTwo, spawnPoint, Quaternion.identity);
+            instantiatedObjects.Add(newPowerUp);
+            if (instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
         }
         else if (randomPowerUp == 3)
         {
-            Instantiate(powerUpThree, spawnPoint, Quaternion.identity);
+            GameObject newPowerUp = Instantiate(powerUpThree, spawnPoint, Quaternion.identity);
+            instantiatedObjects.Add(newPowerUp);
+            if (instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
         }
 
+    }
+
+    public void StartSlowTimer()
+    {
+        StartCoroutine("SlowTimer");
+    }
+
+    public void SlowAllInstantiatedObjects()
+    {    
+            foreach (GameObject instantiated in instantiatedObjects)
+            {
+                instantiated.GetComponent<HazardsAndPowerups>().SlowDown();
+            }   
+    }
+
+    public void RemoveInstantiatedObjectFromList(GameObject destroyedGameObject)
+    {
+        instantiatedObjects.Remove(destroyedGameObject);
     }
 
     private IEnumerator HazardSpawnTimer()
@@ -80,5 +123,15 @@ public class Spawning : MonoBehaviour
         yield return new WaitForSeconds(5);
         StartCoroutine(PowerUpSpawnTimer());
     }
+
+    private IEnumerator SlowTimer()
+    {
+        SlowAllInstantiatedObjects();
+        instantiatedObjectsBeingSlowed = true;
+        yield return new WaitForSeconds(timeToSlowObjects);
+        instantiatedObjectsBeingSlowed = false;
+
+    }
+
 
 }
