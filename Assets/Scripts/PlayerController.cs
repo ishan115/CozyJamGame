@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
     public float Speed = 15f;
     public float maxSpeed = 100f;
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Position: " + rb.position.x);
+
         // Moves the player
         if (Input.GetKey("d") && rb.velocity.x < maxSpeed && rb.position.x <= cameraMax)
         {
@@ -41,10 +43,11 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.right * 6);
         }
 
-        // Keeps the player on screen 
+        // Keeps the player on screen // TODO change the 2 float values depending on sprite
         cameraPos = Camera.main.WorldToViewportPoint(rb.position);
-        // TODO change the 2 float values depending on sprite
         cameraPos.x = Mathf.Clamp(cameraPos.x, 0.02f, .98f);
         transform.position = Camera.main.ViewportToWorldPoint(cameraPos);
+
+        Debug.Log("Velocity: " + rb.velocity.x);
     }
 }
