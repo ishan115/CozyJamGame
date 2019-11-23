@@ -293,6 +293,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CreditsCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1834066661852373317, guid: 65dedffd5764c0a48b827aca07cf8a4a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1834066661852373313, guid: 65dedffd5764c0a48b827aca07cf8a4a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -408,6 +413,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 163951696}
+    - target: {fileID: 1834066661421505705, guid: 65dedffd5764c0a48b827aca07cf8a4a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65dedffd5764c0a48b827aca07cf8a4a, type: 3}
 --- !u!1001 &2589426961488318510
@@ -421,6 +431,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589426962487429066, guid: 50d7b719b96259647880436d14aca0d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2589426962487429062, guid: 50d7b719b96259647880436d14aca0d8,
         type: 3}
