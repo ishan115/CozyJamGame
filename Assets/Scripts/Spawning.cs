@@ -52,6 +52,9 @@ public class Spawning : MonoBehaviour
         Vector3 spawnPoint = new Vector3(Random.Range(-8, 8), -4);
         GameObject newHazard = Instantiate(hazardPrefab, spawnPoint, Quaternion.identity);
         instantiatedObjects.Add(newHazard);
+
+        
+
         if(instantiatedObjectsBeingSlowed == true)
         {
             SlowAllInstantiatedObjects();
@@ -154,8 +157,5 @@ public class Spawning : MonoBehaviour
         instantiatedObjectsBeingSlowed = true;
         yield return new WaitForSeconds(timeToSlowObjects);
         instantiatedObjectsBeingSlowed = false;
-
     }
-
-
 }
