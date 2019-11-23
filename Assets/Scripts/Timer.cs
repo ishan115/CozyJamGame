@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private Text timerUI;
 
+    private bool slowTime = false;
+    private float slowDownLength = 5f;
 
     private float timeRemaining;
     // Start is called before the first frame update
@@ -21,7 +23,14 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeRemaining -= Time.deltaTime;
+        if (slowTime != true)
+        {
+            timeRemaining -= Time.deltaTime;
+        }
+        else
+        {
+            timeRemaining -= Time.deltaTime / 2;
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             timeRemaining += 5;
@@ -40,5 +49,17 @@ public class Timer : MonoBehaviour
     public void SubtractTime()
     {
         timeRemaining -= 5;
+    }
+
+    public void SlowTimer()
+    {
+        slowTime = true;
+        StartCoroutine("SlowTimerLength");
+    }
+
+    private IEnumerator SlowTimerLength()
+    {
+        yield return new WaitForSeconds(slowDownLength);
+        slowTime = false;
     }
 }
