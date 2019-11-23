@@ -8,9 +8,22 @@ public class PlayerCollision : MonoBehaviour
     private Timer timer;
     [SerializeField]
     private Spawning spawningObject;
+    [SerializeField]
+    private Shooting shootingScript;
+
+
+    //sound instantiation
+    private AudioSource collisionAudio;
+    public AudioClip frenzyAudioClip;
+    public AudioClip shotgunAudioClip;
 
     bool Shield = false;
     bool Invincible = false;
+
+    private void Start()
+    {
+        collisionAudio = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -44,11 +57,14 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log("Hit Shotgun Powerup");
             // TODO Shotgun Powerup
+            collisionAudio.PlayOneShot(frenzyAudioClip, 1.0f);
         }
         if (collision.gameObject.tag == "PowerupFrenzy")
         {
             Debug.Log("Hit Frenzy Powerup");
+            shootingScript.StartCoroutine("FrenzyTimer");
             // TODO Frenzy Powerup
+            collisionAudio.PlayOneShot(shotgunAudioClip, 1.0f);
         }
         if (collision.gameObject.tag == "PowerupTimeSlow")
         {
