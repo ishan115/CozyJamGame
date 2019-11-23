@@ -31,10 +31,11 @@ public class Timer : MonoBehaviour
         {
             timeRemaining -= Time.deltaTime / 2;
         }
-        if (Input.GetButtonDown("Fire1"))
+       /* if (Input.GetButtonDown("Fire1"))
         {
             timeRemaining += 5;
         }
+        */
         int timeRounded = Mathf.RoundToInt(timeRemaining);
         string timeText = timeRounded.ToString();
         timerUI.text = timeText;
