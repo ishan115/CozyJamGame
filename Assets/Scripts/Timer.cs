@@ -49,7 +49,7 @@ public class Timer : MonoBehaviour
     //May wish to make these have parameters that change based on which object is hit
     public void AddTime()
     {
-        timeRemaining += 1;
+        timeRemaining += 1.5f;
     }
 
     public void SubtractTime()
