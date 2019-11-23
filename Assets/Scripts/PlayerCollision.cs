@@ -55,7 +55,7 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("Hit TimeSlow Powerup");
             // TODO Time Slow Powerup
             timer.SlowTimer();
-            spawningObject.SlowAllInstantiatedObjects();
+            spawningObject.StartSlowTimer();
         }
 
         IEnumerator ExecuteAfterTime(float time)

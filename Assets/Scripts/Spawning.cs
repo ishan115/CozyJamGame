@@ -12,7 +12,10 @@ public class Spawning : MonoBehaviour
     private GameObject powerUpTwo;
     [SerializeField]
     private GameObject powerUpThree;
+    [SerializeField]
+    private float timeToSlowObjects;
 
+    private bool instantiatedObjectsBeingSlowed=false;
     private float maxTimeBetweenHazardSpawns = 2;
     private List<GameObject> instantiatedObjects = new List<GameObject>(); //List that contains all hazards and powerups that are instantiated
 
@@ -43,6 +46,10 @@ public class Spawning : MonoBehaviour
         Vector3 spawnPoint = new Vector3(Random.Range(-8, 8), -4);
         GameObject newHazard = Instantiate(hazardPrefab, spawnPoint, Quaternion.identity);
         instantiatedObjects.Add(newHazard);
+        if(instantiatedObjectsBeingSlowed == true)
+        {
+            SlowAllInstantiatedObjects();
+        }
     }
 
     public void SpawnPowerUp()
@@ -53,26 +60,43 @@ public class Spawning : MonoBehaviour
         {
             GameObject newPowerUp = Instantiate(powerUpOne, spawnPoint, Quaternion.identity);
             instantiatedObjects.Add(newPowerUp);
+            if (instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
         }
         else if (randomPowerUp == 2)
         {
             GameObject newPowerUp = Instantiate(powerUpTwo, spawnPoint, Quaternion.identity);
             instantiatedObjects.Add(newPowerUp);
+            if (instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
         }
         else if (randomPowerUp == 3)
         {
             GameObject newPowerUp = Instantiate(powerUpThree, spawnPoint, Quaternion.identity);
             instantiatedObjects.Add(newPowerUp);
+            if (instantiatedObjectsBeingSlowed == true)
+            {
+                SlowAllInstantiatedObjects();
+            }
         }
 
     }
 
-    public void SlowAllInstantiatedObjects()
+    public void StartSlowTimer()
     {
-        foreach(GameObject instantiated in instantiatedObjects)
-        {
-            instantiated.GetComponent<HazardsAndPowerups>().SlowDown();
-        }
+        StartCoroutine("SlowTimer");
+    }
+
+    public void SlowAllInstantiatedObjects()
+    {    
+            foreach (GameObject instantiated in instantiatedObjects)
+            {
+                instantiated.GetComponent<HazardsAndPowerups>().SlowDown();
+            }   
     }
 
     public void RemoveInstantiatedObjectFromList(GameObject destroyedGameObject)
@@ -98,6 +122,15 @@ public class Spawning : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         StartCoroutine(PowerUpSpawnTimer());
+    }
+
+    private IEnumerator SlowTimer()
+    {
+        SlowAllInstantiatedObjects();
+        instantiatedObjectsBeingSlowed = true;
+        yield return new WaitForSeconds(timeToSlowObjects);
+        instantiatedObjectsBeingSlowed = false;
+
     }
 
 

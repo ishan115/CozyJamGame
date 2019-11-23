@@ -683,6 +683,7 @@ MonoBehaviour:
   powerUpOne: {fileID: 6361978986313316206}
   powerUpTwo: {fileID: 347462194}
   powerUpThree: {fileID: 1800762721}
+  timeToSlowObjects: 5
 --- !u!61 &1961166875
 BoxCollider2D:
   m_ObjectHideFlags: 0
