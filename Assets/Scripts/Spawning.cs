@@ -17,6 +17,8 @@ public class Spawning : MonoBehaviour
     [SerializeField]
     private GameObject powerUpInv;
     [SerializeField]
+    private GameObject People;
+    [SerializeField]
     private float timeToSlowObjects;
 
     private bool instantiatedObjectsBeingSlowed=false;

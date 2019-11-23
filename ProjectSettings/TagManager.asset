@@ -10,6 +10,8 @@ TagManager:
   - PowerupShotgun
   - PowerupFrenzy
   - PowerupTimeSlow
+  - People
+  - Bullet
   layers:
   - Default
   - TransparentFX

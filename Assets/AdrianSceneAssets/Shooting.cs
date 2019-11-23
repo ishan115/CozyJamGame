@@ -21,7 +21,6 @@ public class Shooting : MonoBehaviour
     
     void Update()
     {
-        Debug.Log($"ClipSize = {ClipSize}");
         if (ClipSize > 0 && isReloading==false) 
         {
             if (hasFrenzy == true)
